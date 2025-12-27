@@ -1,0 +1,41 @@
+{
+  "name": "etrid-apps",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Frontend applications for the Etrid Network - wallets, dashboards, governance UI, and monitoring tools",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etaborai/etrid-apps.git"
+  },
+  "author": "Etrid Foundation",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "type-check": "turbo type-check",
+    "clean": "turbo clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "dev:portal": "turbo dev --filter=unified-portal",
+    "dev:validator": "turbo dev --filter=validator-dashboard",
+    "dev:wallet": "turbo dev --filter=wallet-web",
+    "build:portal": "turbo build --filter=unified-portal",
+    "build:packages": "turbo build --filter=@etrid/*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "prettier": "^3.1.0",
+    "turbo": "^2.0.0",
+    "typescript": "^5.3.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

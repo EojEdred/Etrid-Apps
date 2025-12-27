@@ -1,41 +1,112 @@
-# Ëtrid Apps
+# Etrid Apps
 
-Official applications for the Ëtrid Network. Includes PrimeSwap DEX interface, Ëtrid Wallet, block explorer, and JavaScript/TypeScript SDK. Built for the Primearc Core Chain and 14 Partition Burst Chains (PBCs). Supports cross-chain asset transfers, AI agent interactions, and EDSC stablecoin operations.
+Frontend applications for the Etrid Network. Web wallet, staking dashboard, governance UI, bridge interface, and mobile apps. Built as a pnpm/Turborepo monorepo with shared component libraries.
 
-## Repository
+## Quick Start
 
-**Push to:** `git@github.com:etaborai/etrid-apps.git`
+```bash
+# Install dependencies
+pnpm install
 
-## Structure
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+```
+
+## Repository Structure
 
 ```
 etrid-apps/
-├── apps/
-│   ├── defihub/              # DeFi dashboard
-│   ├── EtridefiBloc/         # Main DeFi application
-│   ├── governance-ui/        # Governance voting interface
-│   ├── lightning-landing/    # Landing page
-│   ├── masterchef-dashboard/ # Staking dashboard
-│   ├── network-telemetry/    # Network statistics
-│   ├── unified-portal/       # Main portal
-│   ├── validator-dashboard/  # Validator management
-│   ├── wallet-mobile/        # Mobile wallet (React Native)
+├── apps/                     # Frontend applications
+│   ├── unified-portal/       # Main portal (all services)
+│   ├── validator-dashboard/  # Validator monitoring
+│   ├── watchtower-monitor/   # Lightning watchtower
+│   ├── masterchef-dashboard/ # LP rewards
 │   ├── wallet-web/           # Web wallet
-│   └── watchtower-monitor/   # Monitoring UI
-├── packages/
-│   ├── hooks/                # Shared React hooks
-│   ├── types/                # TypeScript types
-│   ├── ui/                   # UI component library
-│   └── utils/                # Shared utilities
-└── play-store-assets/        # Mobile app store assets
+│   ├── wallet-mobile/        # Mobile wallet (React Native)
+│   ├── EtridefiBloc/         # iOS wallet (Swift)
+│   ├── governance-ui/        # Snapshot voting
+│   ├── lightning-landing/    # Landing page
+│   ├── network-telemetry/    # Network stats
+│   └── defihub/              # Operations center
+│
+├── packages/                 # Shared libraries
+│   ├── ui/                   # @etrid/ui - Components
+│   ├── hooks/                # @etrid/hooks - React hooks
+│   ├── types/                # @etrid/types - TypeScript types
+│   └── utils/                # @etrid/utils - Utilities
+│
+└── play-store-assets/        # Mobile store assets
 ```
+
+## Applications
+
+| App | Description | Port | Tech |
+|-----|-------------|------|------|
+| unified-portal | Main aggregated portal | 3000 | Next.js |
+| validator-dashboard | Validator monitoring | 3002 | Next.js |
+| watchtower-monitor | Lightning watchtower | 3003 | Next.js |
+| masterchef-dashboard | LP rewards tracking | 3001 | Next.js |
+| wallet-web | Browser DeFi wallet | 3004 | Next.js |
+| wallet-mobile | Mobile wallet | - | React Native |
+| EtridefiBloc | iOS native wallet | - | Swift |
+| governance-ui | Voting & proposals | 8080 | Vue 3 |
+| lightning-landing | Marketing page | 3005 | Next.js |
+| network-telemetry | Network stats | 8000 | Vanilla JS |
+
+## Shared Packages
+
+| Package | Description |
+|---------|-------------|
+| @etrid/ui | 24 UI components (Radix + Tailwind) |
+| @etrid/hooks | 8 React hooks for blockchain |
+| @etrid/types | 35+ TypeScript definitions |
+| @etrid/utils | 20+ utility functions |
+
+## Development
+
+```bash
+# Start specific app
+pnpm dev:portal       # unified-portal
+pnpm dev:validator    # validator-dashboard
+pnpm dev:wallet       # wallet-web
+
+# Build packages
+pnpm build:packages
+
+# Type check
+pnpm type-check
+
+# Lint
+pnpm lint
+
+# Format code
+pnpm format
+```
+
+## Configuration
+
+Copy `.env.example` to `.env.local`:
+
+```bash
+NEXT_PUBLIC_PRIMEARC_RPC_URL=wss://rpc.etrid.network
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
+```
+
+## Documentation
+
+- [ARCHITECTURE.md](./ARCHITECTURE.md) - Detailed architecture guide
+- [CONTRIBUTING.md](./CONTRIBUTING.md) - Contribution guidelines
+- Individual app READMEs in `apps/*/README.md`
 
 ## Related Repositories
 
 | Repo | Description |
 |------|-------------|
-| [etrid](https://github.com/etaborai/etrid) | Blockchain core (Primearc + PBCs) |
-| [etrid-infra](https://github.com/etaborai/etrid-infra) | Infrastructure & DevOps |
+| [etrid](https://github.com/etaborai/etrid) | Blockchain core |
+| [etrid-infra](https://github.com/etaborai/etrid-infra) | Infrastructure |
 | [etrid-docs](https://github.com/etaborai/etrid-docs) | Documentation |
 
 ## License
